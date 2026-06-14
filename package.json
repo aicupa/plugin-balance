@@ -1,0 +1,27 @@
+{
+  "name": "@aicupa/plugin-balance",
+  "version": "1.0.0",
+  "description": "Show time balance ratio between temporary and current tasks",
+  "main": "./service",
+  "view": "./view",
+  "pluginContributes": {
+    "contextMenus": [
+      {
+        "title": "Copy Node ID",
+        "title_zh": "复制节点ID",
+        "command": "copyNodeId"
+      }
+    ],
+    "views": {
+      "head": true
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@aicupa/api": "^1.0.1"
+  }
+}
