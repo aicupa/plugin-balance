@@ -130,10 +130,12 @@ module.exports = createPlugin((api) => {
       const tempTime = collectDoneTime(tempNode);
       const currentTime = collectDoneTime(currentNode);
       const percent = Math.round((tempTime / (currentTime + tempTime)) * 100);
+      const tempContent = tempNode?.todo?.content || '';
+      const currentContent = currentNode?.todo?.content || '';
 
       return {
         ok: true,
-        result: { percent, tempTime, currentTime },
+        result: { percent, tempTime, currentTime, tempContent, currentContent },
       };
     },
   };

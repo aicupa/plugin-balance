@@ -71,16 +71,39 @@
     }
 
     .balance-bar-track {
-      height: 4px;
-      border-radius: 2px;
+      height: 16px;
+      border-radius: 8px;
       background: rgba(128, 128, 128, 0.15);
       overflow: hidden;
+      position: relative;
     }
 
     .balance-bar-fill {
       height: 100%;
-      border-radius: 3px;
+      border-radius: 8px;
       transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .bar-label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 9px;
+      opacity: 0.8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      pointer-events: none;
+      padding: 0 4px;
+    }
+
+    .bar-label-left {
+      left: 0;
+      text-align: center;
+    }
+
+    .bar-label-right {
+      text-align: center;
     }
 
     .balance-ratio {
@@ -134,6 +157,8 @@
     <div class="balance-bar-wrap">
       <div class="balance-bar-track">
         <div class="balance-bar-fill" id="barFill" style="width:0%"></div>
+        <span class="bar-label bar-label-left" id="labelLeft"></span>
+        <span class="bar-label bar-label-right" id="labelRight"></span>
       </div>
     </div>
     <span class="balance-ratio" id="ratio">0%</span>
@@ -180,6 +205,8 @@
       const currentInput = document.getElementById('currentId')
       const barFill = document.getElementById('barFill')
       const ratioEl = document.getElementById('ratio')
+      const labelLeft = document.getElementById('labelLeft')
+      const labelRight = document.getElementById('labelRight')
       const focusSection = document.getElementById('focusSection')
       const focusList = document.getElementById('focusList')
       let debounceTimer = null
@@ -210,8 +237,14 @@
             const pct = Math.min(r.percent || 0, 100)
             barFill.style.width = pct + '%'
             var h = Math.round(120 * (1 - pct / 100))
-            barFill.style.background = 'hsl(' + h + ', 55%, 65%)'
-            ratioEl.textContent = pct + '%'
+            barFill.style.background = 'hsla(' + h + ', 55%, 65%, 0.25)'
+            var offset = pct - 50
+            ratioEl.textContent = (offset > 0 ? '+' : '') + offset + '%'
+            labelLeft.textContent = r.tempContent || ''
+            labelLeft.style.width = pct + '%'
+            labelRight.textContent = r.currentContent || ''
+            labelRight.style.left = pct + '%'
+            labelRight.style.width = (100 - pct) + '%'
           }
         } catch (_) { }
 
