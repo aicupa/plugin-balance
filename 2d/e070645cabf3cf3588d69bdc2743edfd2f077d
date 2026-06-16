@@ -1,0 +1,14 @@
+service.js
+  h_eabc34dcaf7833 33-37,48-49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "2de070645cabf3cf3588d69bdc2743edfd2f077d",
+  "prompts": {},
+  "humans": {
+    "h_eabc34dcaf7833": {
+      "author": "muhai <muhai.li@tuya.com>"
+    }
+  }
+}
