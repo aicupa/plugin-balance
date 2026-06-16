@@ -56,6 +56,22 @@ module.exports = createPlugin((api) => {
     return total;
   }
 
+  function collectFocusedItems(tree) {
+    const items = [];
+    if (!Array.isArray(tree)) return items;
+    const stack = [...tree];
+    while (stack.length) {
+      const n = stack.pop();
+      if (n.todo?.focus && n.todo?.content) {
+        items.push(n.todo.content);
+      }
+      if (Array.isArray(n.children)) {
+        stack.push(...n.children);
+      }
+    }
+    return items;
+  }
+
   function findNodeById(tree, id) {
     const stack = [...tree];
     while (stack.length) {
@@ -89,6 +105,10 @@ module.exports = createPlugin((api) => {
         ok: true,
         result: { tempId: tempNodeId, currentId: currentNodeId },
       };
+    },
+
+    getFocusedItems({ tree }) {
+      return { ok: true, result: collectFocusedItems(tree) };
     },
 
     calculate({ tree }) {

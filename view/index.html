@@ -85,6 +85,37 @@
       min-width: 36px;
       text-align: right;
     }
+
+    .focus-section {
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+
+    .focus-title {
+      font-size: 10px;
+      opacity: 0.5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .focus-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .focus-item {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: rgba(64, 128, 255, 0.08);
+      border-left: 2px solid rgba(64, 128, 255, 0.4);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   </style>
 </head>
 
@@ -101,6 +132,10 @@
       </div>
     </div>
     <span class="balance-ratio" id="ratio">0%</span>
+  </div>
+  <div class="focus-section" id="focusSection" style="display:none">
+    <div class="focus-title">In Progress</div>
+    <ul class="focus-list" id="focusList"></ul>
   </div>
   <script>
     (function () {
@@ -140,6 +175,8 @@
       const currentInput = document.getElementById('currentId')
       const barFill = document.getElementById('barFill')
       const ratioEl = document.getElementById('ratio')
+      const focusSection = document.getElementById('focusSection')
+      const focusList = document.getElementById('focusList')
       let debounceTimer = null
 
       function onInputChange() {
@@ -172,6 +209,26 @@
             ratioEl.textContent = pct + '%'
           }
         } catch (_) { }
+
+        try {
+          const res = await callPlugin('getFocusedItems', { tree })
+          const inner = res?.result || res
+          const items = inner?.result || inner
+          if (Array.isArray(items) && items.length) {
+            focusList.innerHTML = ''
+            items.forEach(function (text) {
+              var li = document.createElement('li')
+              li.className = 'focus-item'
+              li.textContent = text
+              focusList.appendChild(li)
+            })
+            focusSection.style.display = ''
+          } else {
+            focusSection.style.display = 'none'
+          }
+        } catch (_) {
+          focusSection.style.display = 'none'
+        }
       }
 
       async function loadConfig() {
