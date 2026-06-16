@@ -1,0 +1,19 @@
+view/index.html
+  s_68456ac668d819::t_d83f61ff24401c 13-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "e7e051042619e6a9e50b1b6b535be644c846d5b5",
+  "prompts": {},
+  "sessions": {
+    "s_68456ac668d819": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4987d5ef-3f0b-4949-ac65-a4ab41fbcabe",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "muhai <muhai.li@tuya.com>"
+    }
+  }
+}
