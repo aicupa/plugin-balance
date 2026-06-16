@@ -1,6 +1,6 @@
 {
   "name": "@aicupa/plugin-balance",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Show time balance ratio between temporary and current tasks",
   "main": "./service",
   "view": "./view",
