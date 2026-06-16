@@ -32,7 +32,7 @@ module.exports = createPlugin((api) => {
     let total = 0;
 
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    today.setHours(8, 0, 0, 0);
     const startOfDayTimestamp = today.getTime();
 
     if (!node) return total;
@@ -46,7 +46,13 @@ module.exports = createPlugin((api) => {
         n.todo.end > n.todo.start
       ) {
         if (n.todo.keep) continue;
-        if (n.todo.start < startOfDayTimestamp) continue;
+
+        let end = n.todo.end;
+        let start = n.todo.start;
+
+        if (start < startOfDayTimestamp) {
+          start = startOfDayTimestamp;
+        }
         total += n.todo.end - n.todo.start;
       }
       if (Array.isArray(n.children)) {
