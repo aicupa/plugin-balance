@@ -1,0 +1,26 @@
+view/index.html
+  s_b0f90f469130bc::t_fe7521fd87164b 136-139
+  s_b0f90f469130bc::t_93de5d26e8ee3b 88-118
+  s_b0f90f469130bc::t_dcb91e6d9778f6 178-179
+  s_b0f90f469130bc::t_47c382114c985c 212-231
+service.js
+  s_b0f90f469130bc::t_e36e0779ef6523 59-64,67-74
+  s_b0f90f469130bc::t_52959e34c14b5d 110-113
+  s_b0f90f469130bc::t_4c40d31bc78ddb 65-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "9901faa82cdac2870cad21562fcfdccbab1f5e35",
+  "prompts": {},
+  "sessions": {
+    "s_b0f90f469130bc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "349d002c-ca8d-470b-b1de-961f483a1590",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "muhai <muhai.li@tuya.com>"
+    }
+  }
+}
