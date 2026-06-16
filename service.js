@@ -103,10 +103,7 @@ module.exports = createPlugin((api) => {
       const currentNode = findNodeById(tree, currentNodeId);
       const tempTime = collectDoneTime(tempNode);
       const currentTime = collectDoneTime(currentNode);
-      const percent =
-        currentTime > 0
-          ? Math.round((tempTime / (currentTime + tempTime)) * 100)
-          : 0;
+      const percent = Math.round((tempTime / (currentTime + tempTime)) * 100);
 
       return {
         ok: true,
