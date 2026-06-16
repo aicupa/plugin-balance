@@ -43,10 +43,9 @@ module.exports = createPlugin((api) => {
         n.todo?.done &&
         n.todo?.start &&
         n.todo?.end &&
-        n.todo.end > n.todo.start
+        n.todo.end > n.todo.start &&
+        !n.todo.keep
       ) {
-        if (n.todo.keep) continue;
-
         let end = n.todo.end;
         let start = n.todo.start;
 
