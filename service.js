@@ -30,6 +30,11 @@ module.exports = createPlugin((api) => {
 
   function collectDoneTime(node) {
     let total = 0;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const startOfDayTimestamp = today.getTime();
+
     if (!node) return total;
     const stack = [node];
     while (stack.length) {
@@ -40,6 +45,8 @@ module.exports = createPlugin((api) => {
         n.todo?.end &&
         n.todo.end > n.todo.start
       ) {
+        if (n.todo.keep) continue;
+        if (n.todo.start < startOfDayTimestamp) continue;
         total += n.todo.end - n.todo.start;
       }
       if (Array.isArray(n.children)) {
