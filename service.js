@@ -1,4 +1,3 @@
-const { createPlugin } = require("@aicupa/api");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
@@ -23,7 +22,11 @@ function saveConfig(data) {
   } catch (_) {}
 }
 
-module.exports = createPlugin((api) => {
+/**
+ * @param {import('@aicupa/api').PluginApi} api
+ * @returns {import('@aicupa/api').Plugin}
+ */
+module.exports = (api) => {
   const saved = loadConfig();
   let tempNodeId = saved.tempId || null;
   let currentNodeId = saved.currentId || null;
@@ -129,8 +132,8 @@ module.exports = createPlugin((api) => {
       const tempTime = collectDoneTime(tempNode);
       const currentTime = collectDoneTime(currentNode);
       const percent = Math.round((tempTime / (currentTime + tempTime)) * 100);
-      const tempContent = tempNode?.todo?.content || '';
-      const currentContent = currentNode?.todo?.content || '';
+      const tempContent = tempNode?.todo?.content || "";
+      const currentContent = currentNode?.todo?.content || "";
 
       return {
         ok: true,
@@ -138,4 +141,4 @@ module.exports = createPlugin((api) => {
       };
     },
   };
-});
+};

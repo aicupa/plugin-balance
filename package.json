@@ -21,7 +21,7 @@
     "access": "public"
   },
   "license": "MIT",
-  "dependencies": {
-    "@aicupa/api": "^1.0.1"
+  "devDependencies": {
+    "@aicupa/api": "^1.0.2"
   }
 }
