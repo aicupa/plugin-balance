@@ -22,6 +22,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@aicupa/api": "^1.0.2"
+    "@aicupa/api": "^1.0.3"
   }
 }

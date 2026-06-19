@@ -1,32 +1,32 @@
-const path = require("path");
-const os = require("os");
-const fs = require("fs");
-
-const configPath = path.join(
-  os.homedir(),
-  ".todoListNative",
-  "plugin-balance.json",
-);
-
-function loadConfig() {
-  try {
-    return JSON.parse(fs.readFileSync(configPath, "utf-8"));
-  } catch (_) {
-    return {};
-  }
-}
-
-function saveConfig(data) {
-  try {
-    fs.writeFileSync(configPath, JSON.stringify(data));
-  } catch (_) {}
-}
-
 /**
  * @param {import('@aicupa/api').PluginApi} api
  * @returns {import('@aicupa/api').Plugin}
  */
 module.exports = (api) => {
+  const path = api.path;
+  const os = api.os;
+  const fs = api.fs;
+
+  const configPath = path.join(
+    os.homedir(),
+    ".todoListNative",
+    "plugin-balance.json",
+  );
+
+  function loadConfig() {
+    try {
+      return JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function saveConfig(data) {
+    try {
+      fs.writeFileSync(configPath, JSON.stringify(data));
+    } catch (_) {}
+  }
+
   const saved = loadConfig();
   let tempNodeId = saved.tempId || null;
   let currentNodeId = saved.currentId || null;
